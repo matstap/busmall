@@ -41,12 +41,31 @@ function randNum() {
   return Math.floor(Math.random()*images_arr.length);
 }
 
-// only worrying about just before duplicates atm
 function selectImgs() {
   var num1 = randNum();
   var num2 = randNum();
   var num3 = randNum();
-  img1.src = images_arr[num1].filePath;
-  img2.src = images_arr[num2].filePath;
-  img2.src = images_arr[num3].filePath;
+
+  while (justShown.includes(num1)) {
+    num1 = randNum();
+  }
+
+  while (num2 === num1 || justShown.includes(num2)) {
+    num2 = randNum();
+  }
+
+  while (num3 === num1 || num3 === num2 || justShown.includes(num3)) {
+    num3 = randNum();
+  }
+
+  justShown = [];
+  justShown.push(num1, num2, num3);
+
+  return justShown;
+}
+
+function render(indexArr) {
+  img1.setAttibute('src', images_arr[indexArr[0]].filePath);
+  img2.setAttibute('src', images_arr[indexArr[1]].filePath);
+  img3.setAttibute('src', images_arr[indexArr[2]].filePath);
 }
