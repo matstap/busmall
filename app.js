@@ -1,3 +1,5 @@
+'use strict';
+
 var images_arr = [];
 // this has the three just chosen, replaced each time
 var justShown = [];
@@ -13,6 +15,8 @@ function Img(name, filePath) {
   this.shownCounter = 0;
   images_arr.push(this);
 }
+
+
 
 var bag = new Img('bag', 'img/bag.jpg');
 var banana = new Img('banana', 'img/banana.jpg');
@@ -69,4 +73,12 @@ function render() {
   img1.src =  images_arr[indexArr[0]].filePath;
   img2.src = images_arr[indexArr[1]].filePath;
   img3.src = images_arr[indexArr[2]].filePath;
+
+  images_arr[indexArr[0]].shownCounter ++;
+  images_arr[indexArr[1]].shownCounter ++;
+  images_arr[indexArr[2]].shownCounter ++;
 }
+
+img1.addEventListener('click', render);
+img2.addEventListener('click', render);
+img3.addEventListener('click', render);
