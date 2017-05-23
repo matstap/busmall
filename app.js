@@ -98,7 +98,19 @@ function stopSurvey() {
   }
 }
 
+function getPropVals(prop) {
+  var vals = [];
+  for (var i = 0; i < images_arr.length; i++) {
+    vals.push(images_arr[i].prop);
+  }
+  return vals;
+}
+
 function results() {
+  
+}
+
+/*function results() {
   var table = document.getElementById('tab');
 
   for (var i = 0; i < images_arr.length; i++) {
@@ -111,7 +123,7 @@ function results() {
     new_row.innerHTML = data.join('');
     table.appendChild(new_row);
   }
-}
+}*/
 
 render(); // initializes page with images
 img1.addEventListener('click', addClick);
