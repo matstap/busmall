@@ -53,10 +53,15 @@ function selectImgs() {
     while (justShown.includes(num)) {
       num = randNum();
     }
-    justShown[i] = num;
+    justShown.push(num);
   }
 
-  //console.log(justShown);
+  if (globalClicks >= 1 ) {
+    for (var j = 0; j < 3; j++) {
+      justShown.shift();
+    }
+  }
+
   return justShown;
 }
 
