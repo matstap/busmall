@@ -75,10 +75,20 @@ function addClick(e) {
       images_arr[i].clickCounter ++;
       //console.log(images_arr[i].name, images_arr[i].clickCounter);
       globalClicks ++;
+      console.log(globalClicks);
     }
   }
 
+  stopSurvey();
   render();
+}
+
+function stopSurvey() {
+  var pics = document.getElementById('pics');
+  if (globalClicks >= 5) {
+    pics.style.display = 'none';
+    console.log('I am here');
+  }
 }
 
 
