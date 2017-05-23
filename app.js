@@ -119,7 +119,6 @@ function results() {
         //backgroundColor: []
       }]
     },
-    width: 300,
     options: {}
   });
 }

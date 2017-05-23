@@ -29,4 +29,7 @@ h1 a{
   outline: solid 1px #D3D3D3;
 }
 
-#
+.chartSec {
+  width: 900px;
+  margin: 70px auto;
+}
