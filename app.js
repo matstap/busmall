@@ -125,9 +125,13 @@ function results() {
 
 function randColors() {
   var colors = [];
+  // Attribution: https://www.paulirish.com/2009/random-hex-color-code-snippets/
+  var temp = '#'+Math.floor(Math.random()*16777215).toString(16);
   for (var i = 0; i < images_arr.length; i++) {
-    // Attribution: https://www.paulirish.com/2009/random-hex-color-code-snippets/
-    colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
+    while (colors.includes(temp)) {
+      temp = '#'+Math.floor(Math.random()*16777215).toString(16);
+    }
+    colors.push(temp);
   }
   return colors;
 }
