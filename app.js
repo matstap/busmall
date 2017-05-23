@@ -98,10 +98,10 @@ function stopSurvey() {
   }
 }
 
-function getPropVals(prop) {
+function getPropVals(key) {
   var vals = [];
   for (var i = 0; i < images_arr.length; i++) {
-    vals.push(images_arr[i].prop);
+    vals.push(images_arr[i][key]);
   }
   return vals;
 }
