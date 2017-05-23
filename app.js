@@ -115,12 +115,21 @@ function results() {
       labels: getPropVals('name'),
       datasets: [{
         label: 'Product Clicks',
-        data: getPropVals('clickCounter')
-        //backgroundColor: []
+        data: getPropVals('clickCounter'),
+        backgroundColor: randColors()
       }]
     },
     options: {}
   });
+}
+
+function randColors() {
+  var colors = [];
+  for (var i = 0; i < images_arr.length; i++) {
+    // Attribution: https://www.paulirish.com/2009/random-hex-color-code-snippets/
+    colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
+  }
+  return colors;
 }
 
 render(); // initializes page with images
