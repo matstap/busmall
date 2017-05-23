@@ -107,7 +107,21 @@ function getPropVals(prop) {
 }
 
 function results() {
-  
+  var canvas = document.getElementById('chart');
+  var ctx = canvas.getContext('2d');
+
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: getPropVals('name'),
+      datasets: [{
+        label: 'Product Clicks',
+        data: getPropVals('clickCounter')//,
+        //backgroundColor: []
+      }]
+    },
+    options: {}
+  });
 }
 
 /*function results() {
