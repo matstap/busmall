@@ -16,8 +16,6 @@ function Img(name, filePath) {
   images_arr.push(this);
 }
 
-
-
 var bag = new Img('bag', 'img/bag.jpg');
 var banana = new Img('banana', 'img/banana.jpg');
 var bathroom = new Img('bathroom', 'img/bathroom.jpg');
@@ -79,6 +77,20 @@ function render() {
   images_arr[indexArr[2]].shownCounter ++;
 }
 
-img1.addEventListener('click', render);
-img2.addEventListener('click', render);
-img3.addEventListener('click', render);
+function addClick(e) {
+  var selected = e.target.getAttribute('src');
+
+  for (var i = 0; i < images_arr.length; i++) {
+    if (selected === images_arr[i].filePath) {
+      images_arr[i].clickCounter ++;
+      globalClicks ++;
+    }
+  }
+
+  render();
+}
+
+
+img1.addEventListener('click', addClick);
+img2.addEventListener('click', addClick);
+img3.addEventListener('click', addClick);
