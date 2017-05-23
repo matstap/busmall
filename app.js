@@ -73,9 +73,7 @@ function addClick(e) {
   for (var i = 0; i < images_arr.length; i++) {
     if (selected === images_arr[i].filePath) {
       images_arr[i].clickCounter ++;
-      //console.log(images_arr[i].name, images_arr[i].clickCounter);
       globalClicks ++;
-      console.log(globalClicks);
     }
   }
 
@@ -85,9 +83,24 @@ function addClick(e) {
 
 function stopSurvey() {
   var pics = document.getElementById('pics');
-  if (globalClicks >= 5) {
+  if (globalClicks >= 25) {
     pics.style.display = 'none';
-    console.log('I am here');
+    results();
+  }
+}
+
+function results() {
+  var table = document.getElementById('tab');
+
+  for (var i = 0; i < images_arr.length; i++) {
+    var data = [];
+    data.push('<td>' + images_arr[i].name + '</td>');
+    data.push('<td>Shown ' + images_arr[i].shownCounter + ' times</td>');
+    data.push('<td>Clicked ' + images_arr[i].clickCounter + ' times</td>');
+
+    var new_row = document.createElement('tr');
+    new_row.innerHTML = data.join('');
+    table.appendChild(new_row);
   }
 }
 
