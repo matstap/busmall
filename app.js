@@ -1,7 +1,6 @@
 'use strict';
 
 var images_arr = [];
-// this has the three just chosen, replaced each time
 var justShown = [];
 var globalClicks = 0;
 var img1 = document.getElementById('img-one');
@@ -116,28 +115,14 @@ function results() {
       labels: getPropVals('name'),
       datasets: [{
         label: 'Product Clicks',
-        data: getPropVals('clickCounter')//,
+        data: getPropVals('clickCounter')
         //backgroundColor: []
       }]
     },
+    width: 300,
     options: {}
   });
 }
-
-/*function results() {
-  var table = document.getElementById('tab');
-
-  for (var i = 0; i < images_arr.length; i++) {
-    var data = [];
-    data.push('<td>' + images_arr[i].name + '</td>');
-    data.push('<td>Shown ' + images_arr[i].shownCounter + ' times</td>');
-    data.push('<td>Clicked ' + images_arr[i].clickCounter + ' times (' + images_arr[i].percentage() + '%)</td>');
-
-    var new_row = document.createElement('tr');
-    new_row.innerHTML = data.join('');
-    table.appendChild(new_row);
-  }
-}*/
 
 render(); // initializes page with images
 img1.addEventListener('click', addClick);
