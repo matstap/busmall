@@ -44,25 +44,15 @@ function randNum() {
 }
 
 function selectImgs() {
-  var num1 = randNum();
-  var num2 = randNum();
-  var num3 = randNum();
-
-  while (justShown.includes(num1)) {
-    num1 = randNum();
+  for (var i = 0; i < 3; i++) {
+    var num = randNum();
+    while (justShown.includes(num)) {
+      num = randNum();
+    }
+    justShown[i] = num;
   }
 
-  while (num2 === num1 || justShown.includes(num2)) {
-    num2 = randNum();
-  }
-
-  while (num3 === num1 || num3 === num2 || justShown.includes(num3)) {
-    num3 = randNum();
-  }
-
-  justShown = [];
-  justShown.push(num1, num2, num3);
-
+  //console.log(justShown);
   return justShown;
 }
 
@@ -83,6 +73,7 @@ function addClick(e) {
   for (var i = 0; i < images_arr.length; i++) {
     if (selected === images_arr[i].filePath) {
       images_arr[i].clickCounter ++;
+      //console.log(images_arr[i].name, images_arr[i].clickCounter);
       globalClicks ++;
     }
   }
