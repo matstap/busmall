@@ -16,6 +16,10 @@ function Img(name, filePath) {
   images_arr.push(this);
 }
 
+Img.prototype.percentage = function() {
+  return (this.clickCounter / this.shownCounter) * 100.0;
+};
+
 var bag = new Img('bag', 'img/bag.jpg');
 var banana = new Img('banana', 'img/banana.jpg');
 var bathroom = new Img('bathroom', 'img/bathroom.jpg');
@@ -96,7 +100,7 @@ function results() {
     var data = [];
     data.push('<td>' + images_arr[i].name + '</td>');
     data.push('<td>Shown ' + images_arr[i].shownCounter + ' times</td>');
-    data.push('<td>Clicked ' + images_arr[i].clickCounter + ' times</td>');
+    data.push('<td>Clicked ' + images_arr[i].clickCounter + ' times (' + images_arr[i].percentage() + '%)</td>');
 
     var new_row = document.createElement('tr');
     new_row.innerHTML = data.join('');
@@ -104,7 +108,7 @@ function results() {
   }
 }
 
-
+render(); // initializes page with images
 img1.addEventListener('click', addClick);
 img2.addEventListener('click', addClick);
 img3.addEventListener('click', addClick);
