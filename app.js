@@ -107,15 +107,15 @@ function getPropVals(key) {
 
 function randColors() {
   var colors = [];
-  
+
   for (var i = 0; i < images_arr.length; i++) {
-    var temp = [];
-    while(colors.includes('rgb(' + temp.toString() + ')') || temp.length < 1) {
-      for (var j=0; j<3; j++) {
-        temp.push(Math.floor(Math.random()*256));
+    var newColor = [];
+    while(colors.includes('rgb(' + newColor.join() + ')') || newColor.length < 1) {
+      for (var j = 0; j < 3; j++) {
+        newColor.push(Math.floor(Math.random()*256));
       }
     }
-    colors.push('rgb(' + temp.toString() + ')');
+    colors.push('rgb(' + newColor.join() + ')');
   }
   return colors;
 }
