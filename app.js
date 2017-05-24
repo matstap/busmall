@@ -105,6 +105,21 @@ function getPropVals(key) {
   return vals;
 }
 
+function randColors() {
+  var colors = [];
+  
+  for (var i = 0; i < images_arr.length; i++) {
+    var temp = [];
+    while(colors.includes('rgb(' + temp.toString() + ')') || temp.length < 1) {
+      for (var j=0; j<3; j++) {
+        temp.push(Math.floor(Math.random()*256));
+      }
+    }
+    colors.push('rgb(' + temp.toString() + ')');
+  }
+  return colors;
+}
+
 function results() {
   var canvas = document.getElementById('chart');
   var ctx = canvas.getContext('2d');
@@ -121,19 +136,6 @@ function results() {
     },
     options: {}
   });
-}
-
-function randColors() {
-  var colors = [];
-  // Attribution: https://www.paulirish.com/2009/random-hex-color-code-snippets/
-  var temp = '#'+Math.floor(Math.random()*16777215).toString(16);
-  for (var i = 0; i < images_arr.length; i++) {
-    while (colors.includes(temp)) {
-      temp = '#'+Math.floor(Math.random()*16777215).toString(16);
-    }
-    colors.push(temp);
-  }
-  return colors;
 }
 
 render(); // initializes page with images
