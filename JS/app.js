@@ -56,9 +56,7 @@ function selectImgs() {
   }
 
   if (globalClicks >= 1 ) {
-    for (var j = 0; j < 3; j++) {
-      justShown.shift();
-    }
+    justShown = justShown.slice(3,6);
   }
 
   return justShown;
