@@ -1,7 +1,6 @@
 'use strict';
 
 var images_arr = [];
-// this has the three just chosen, replaced each time
 var justShown = [];
 var globalClicks = 0;
 var img1 = document.getElementById('img-one');
@@ -98,19 +97,52 @@ function stopSurvey() {
   }
 }
 
-function results() {
-  var table = document.getElementById('tab');
+function getPropVals(key) {
+  var vals = [];
+  for (var i = 0; i < images_arr.length; i++) {
+    vals.push(images_arr[i][key]);
+  }
+  return vals;
+}
+
+function randColors() {
+  var colors = [];
 
   for (var i = 0; i < images_arr.length; i++) {
-    var data = [];
-    data.push('<td>' + images_arr[i].name + '</td>');
-    data.push('<td>Shown ' + images_arr[i].shownCounter + ' times</td>');
-    data.push('<td>Clicked ' + images_arr[i].clickCounter + ' times (' + images_arr[i].percentage() + '%)</td>');
-
-    var new_row = document.createElement('tr');
-    new_row.innerHTML = data.join('');
-    table.appendChild(new_row);
+    var newColor = [];
+    while(colors.includes('rgb(' + newColor.join() + ')') || newColor.length < 1) {
+      for (var j = 0; j < 3; j++) {
+        newColor.push(Math.floor(Math.random()*256));
+      }
+    }
+    colors.push('rgb(' + newColor.join() + ')');
   }
+  return colors;
+}
+
+function results() {
+  var canvas = document.getElementById('chart');
+  var ctx = canvas.getContext('2d');
+
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: getPropVals('name'),
+      datasets: [{
+        label: 'Product Clicks',
+        data: getPropVals('clickCounter'),
+        backgroundColor: randColors()
+      }]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        fontSize: 20,
+        text: 'Clicks Per Product'
+      }
+    }
+  });
 }
 
 render(); // initializes page with images
