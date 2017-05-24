@@ -134,7 +134,14 @@ function results() {
         backgroundColor: randColors()
       }]
     },
-    options: {}
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        fontSize: 20,
+        text: 'Clicks Per Product'
+      }
+    }
   });
 }
 
