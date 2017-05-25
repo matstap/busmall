@@ -151,10 +151,7 @@ function results() {
           stacked: true,
           ticks: {beginAtZero: true}
         }],
-        xAxes: [{
-          stacked: true,
-          ticks: {stacked: true}
-        }]
+        xAxis: [{stacked: true}]
       }
     }
   });
