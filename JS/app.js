@@ -19,26 +19,30 @@ Img.prototype.percentage = function() {
   return (this.clickCounter / this.shownCounter) * 100.0;
 };
 
-var bag = new Img('bag', 'img/bag.jpg');
-var banana = new Img('banana', 'img/banana.jpg');
-var bathroom = new Img('bathroom', 'img/bathroom.jpg');
-var boots = new Img('boots', 'img/boots.jpg');
-var breakfast = new Img('breakfast', 'img/breakfast.jpg');
-var bibblegum = new Img('bubblegum', 'img/bubblegum.jpg');
-var chair = new Img('chair', 'img/chair.jpg');
-var cthulhu = new Img('cthulhu', 'img/cthulhu.jpg');
-var dogDuck = new Img('dogDuck', 'img/dog-duck.jpg');
-var dragon = new Img('dragon', 'img/dragon.jpg');
-var pen = new Img('pen', 'img/pen.jpg');
-var petSweep = new Img('petSweep', 'img/pet-sweep.jpg');
-var scissors = new Img('scissors', 'img/scissors.jpg');
-var shark = new Img('shark', 'img/shark.jpg');
-var sweep = new Img('sweep', 'img/sweep.png');
-var tauntaun = new Img('tauntaun', 'img/tauntaun.jpg');
-var unicorn = new Img('unicorn', 'img/unicorn.jpg');
-var usb = new Img('usb', 'img/usb.gif');
-var waterCan = new Img('waterCan', 'img/water-can.jpg');
-var wine = new Img('wineGlass', 'img/wine-glass.jpg');
+if (!localStorage.savedProdArray) {
+  var bag = new Img('bag', 'img/bag.jpg');
+  var banana = new Img('banana', 'img/banana.jpg');
+  var bathroom = new Img('bathroom', 'img/bathroom.jpg');
+  var boots = new Img('boots', 'img/boots.jpg');
+  var breakfast = new Img('breakfast', 'img/breakfast.jpg');
+  var bibblegum = new Img('bubblegum', 'img/bubblegum.jpg');
+  var chair = new Img('chair', 'img/chair.jpg');
+  var cthulhu = new Img('cthulhu', 'img/cthulhu.jpg');
+  var dogDuck = new Img('dogDuck', 'img/dog-duck.jpg');
+  var dragon = new Img('dragon', 'img/dragon.jpg');
+  var pen = new Img('pen', 'img/pen.jpg');
+  var petSweep = new Img('petSweep', 'img/pet-sweep.jpg');
+  var scissors = new Img('scissors', 'img/scissors.jpg');
+  var shark = new Img('shark', 'img/shark.jpg');
+  var sweep = new Img('sweep', 'img/sweep.png');
+  var tauntaun = new Img('tauntaun', 'img/tauntaun.jpg');
+  var unicorn = new Img('unicorn', 'img/unicorn.jpg');
+  var usb = new Img('usb', 'img/usb.gif');
+  var waterCan = new Img('waterCan', 'img/water-can.jpg');
+  var wine = new Img('wineGlass', 'img/wine-glass.jpg');
+} else {
+  images_arr = JSON.parse(localStorage.savedProdArray);
+}
 
 //console.log(images_arr)
 
@@ -56,9 +60,7 @@ function selectImgs() {
   }
 
   if (globalClicks >= 1 ) {
-    for (var j = 0; j < 3; j++) {
-      justShown.shift();
-    }
+    justShown = justShown.slice(3,6);
   }
 
   return justShown;
@@ -93,6 +95,7 @@ function stopSurvey() {
   var pics = document.getElementById('pics');
   if (globalClicks >= 25) {
     pics.style.display = 'none';
+    localStorage.savedProdArray = JSON.stringify(images_arr);
     results();
   }
 }
@@ -115,7 +118,7 @@ function randColors() {
         newColor.push(Math.floor(Math.random()*256));
       }
     }
-    colors.push('rgb(' + newColor.join() + ')');
+    colors.push('rgba(' + newColor.join() + ', 1.0)');
   }
   return colors;
 }
@@ -132,14 +135,23 @@ function results() {
         label: 'Product Clicks',
         data: getPropVals('clickCounter'),
         backgroundColor: randColors()
+      }, {
+        label: 'Times Shown',
+        data: getPropVals('shownCounter')
       }]
     },
     options: {
-      legend: {display: false},
       title: {
         display: true,
         fontSize: 20,
-        text: 'Clicks Per Product'
+        text: 'Product Data'
+      },
+      scales: {
+        yAxes: [{
+          stacked: true,
+          ticks: {beginAtZero: true}
+        }],
+        xAxis: [{stacked: true}]
       }
     }
   });
