@@ -7,19 +7,35 @@ header {
   margin-top: 20px;
 }
 
-h1 a{
+header ul li {
+  font-family:  'Racing Sans One', cursive;
+  display: inline-block;
+}
+
+header a {
+  color: #3b5998;
+}
+
+h1 {
+  font-family: 'Faster One', cursive;
   font-size: 60px;
   color: #3b5998;
+  margin: 0 50px;
+}
+
+.tilt:hover {
+  transform: rotate(-5deg);
 }
 
 #pics {
   margin-top: 70px;
   text-align: center;
+  font-family: helvetica;
 }
 
 #pics h3 {
   margin-bottom: 20px;
-  font-size: 26px;
+  font-size: 25px;
 }
 
 #pics img {
@@ -27,6 +43,12 @@ h1 a{
   height: 300px;
   margin-right: 20px;
   outline: solid 1px #D3D3D3;
+  box-shadow: 5px 5px 2px #888888;
+  margin-bottom: 40px;
+}
+
+#pics p {
+  font-size: 20px;
 }
 
 .chartSec {
